@@ -1,0 +1,41 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# GCP Service Account Keys
+*.json # 避免意外提交服务账户密钥，最好用更精确的匹配，例如 gcp-sa-key-*.json
+
+# Node.js (for Cloudflare Worker)
+node_modules/
+dist/
+.wrangler/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Go (binaries if built locally)
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+* # 如果在函数目录下直接 go build 生成可执行文件，需要更具体的规则
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
