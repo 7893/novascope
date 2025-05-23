@@ -3,7 +3,7 @@
 *.tfstate
 *.tfstate.*
 crash.log
-*.tfvars
+*.tfvars                     # 忽略所有 .tfvars 文件 (包含敏感变量值)
 override.tf
 override.tf.json
 *_override.tf
@@ -12,30 +12,50 @@ override.tf.json
 terraform.rc
 
 # GCP Service Account Keys
-*.json # 避免意外提交服务账户密钥，最好用更精确的匹配，例如 gcp-sa-key-*.json
+# 推荐方案: 将服务账户密钥 JSON 文件存放在项目根目录下的 .secrets/ 目录中，
+# 并忽略该 .secrets/ 目录下的所有内容或所有 .json 文件。
+# 例如:
+# .secrets/
+# 或者更具体地忽略该目录下的json文件：
+.secrets/*.json
+# 如果您不使用 .secrets/ 目录，并且您的服务账户密钥文件有特定模式，例如：
+# gcp-sa-key-*.json
+# terraspace-sa-key.json
 
 # Node.js (for Cloudflare Worker)
 node_modules/
-dist/
-.wrangler/
+dist/                        # 通常是 TypeScript 或其他前端框架编译后的输出目录
+.wrangler/                   # Wrangler CLI 本地开发状态和缓存目录
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Go (binaries if built locally)
+# Go
+# 通常我们提交 .go 源码，由云平台（如 GCP Cloud Build）在部署时构建。
+# 如果您确实在本地构建了可执行文件并且不想提交它们（例如与函数目录同名）:
+# gcp_functions_go/ns-func-fetch-apod/ns-func-fetch-apod
+# gcp_functions_go/ns-func-get-metadata/ns-func-get-metadata
+#
+# 特定平台的编译产物 (如果您本地为不同平台交叉编译):
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-* # 如果在函数目录下直接 go build 生成可执行文件，需要更具体的规则
 
-# OS-specific
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# IDE specific
+# IDE specific files
 .vscode/
 .idea/
 *.swp
+
+# Build & temporary files from common tools
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
