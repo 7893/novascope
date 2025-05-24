@@ -2,7 +2,7 @@
 
 terraform {
   backend "gcs" {
-    bucket  = "ns-tfstate-sigma-outcome-0522" # 您已创建的用于存储 Terraform 状态的 GCS Bucket 名称
-    prefix  = "novascope/terraform.tfstate"     # 状态文件在桶中的路径
+    bucket  = "ns-gcs-unified-sigma-outcome" // 指向您已创建的统一 GCS 桶名称
+    prefix  = "tfstate/novascope"            // 状态文件在此桶内的路径
   }
 }

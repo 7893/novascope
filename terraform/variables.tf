@@ -1,28 +1,28 @@
 # novascope/terraform/variables.tf
 
 variable "gcp_project_id" {
-  description = "您的 GCP 项目 ID"
+  description = "GCP 项目 ID"
   type        = string
   default     = "sigma-outcome"
 }
 
 variable "gcp_region" {
-  description = "您的 GCP 默认区域"
+  description = "GCP 默认区域"
   type        = string
   default     = "us-central1"
 }
 
 variable "cloudflare_account_id" {
-  description = "您的 Cloudflare 账户 ID (请在 terraform.tfvars 中提供)"
+  description = "Cloudflare 账户 ID (在 terraform.tfvars 中提供)"
   type        = string
-  # 没有默认值，将从 terraform.tfvars 读取
+  # 没有默认值，确保从 terraform.tfvars 读取
 }
 
 variable "cloudflare_api_token" {
-  description = "您的 Cloudflare API Token (请在 terraform.tfvars 中提供)"
+  description = "Cloudflare API Token (在 terraform.tfvars 中提供)"
   type        = string
-  sensitive   = true # 标记为敏感数据
-  # 没有默认值，将从 terraform.tfvars 读取
+  sensitive   = true
+  # 没有默认值，确保从 terraform.tfvars 读取
 }
 
 variable "resource_prefix" {
@@ -31,15 +31,32 @@ variable "resource_prefix" {
   default     = "ns"
 }
 
-variable "gcs_bucket_for_functions_source_name" {
-  description = "用于存储 Cloud Functions 源码的 GCS Bucket 名称 (需全局唯一)"
+variable "gcs_unified_bucket_name" {
+  description = "用于 Terraform 状态和函数源码的统一 GCS Bucket 名称"
   type        = string
-  # 基于您上次 apply 时成功创建的桶名，避免不必要的替换
-  default     = "ns-gcs-func-source-sigma-outcome-0523" 
+  default     = "ns-gcs-unified-sigma-outcome" // 与您已创建的桶名一致
+}
+
+variable "tf_state_gcs_prefix" {
+  description = "Terraform 状态文件在统一 GCS Bucket 内的前缀"
+  type        = string
+  default     = "tfstate/novascope"
+}
+
+variable "function_source_gcs_prefix" {
+  description = "Cloud Functions 源码包在统一 GCS Bucket 内的前缀"
+  type        = string
+  default     = "sources/functions/" // 确保末尾有斜杠
 }
 
 variable "r2_bucket_name_suffix" {
-  description = "用于存储 APOD 图片的 Cloudflare R2 Bucket 名称后缀"
+  description = "用于存储 NASA 媒体文件的 Cloudflare R2 Bucket 名称后缀"
   type        = string
-  default     = "apod-images" # 实际桶名将是 ns-r2-apod-images
+  default     = "nasa-media" // 通用名称
+}
+
+variable "worker_script_name" {
+  description = "Cloudflare Worker 脚本的名称"
+  type        = string
+  default     = "ns" // 您决定的简化名称
 }
