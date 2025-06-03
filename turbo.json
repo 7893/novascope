@@ -1,0 +1,12 @@
+{
+  "pipeline": {
+    "build": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "lint": {},
+    "test": {}
+  }
+}
