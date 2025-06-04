@@ -1,4 +1,15 @@
-provider "google" {
-  project = var.gcp_project_id   # 或直接填 "sigma-outcome"
-  region  = var.gcp_region       # 或直接填 "us-central1"
+
+terraform {
+  required_version = ">= 1.5.0"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
 }
+
+provider "google" {
+  project                     = var.project_id
+  region                      = var.region
+  impersonate_service_account = var.deployer_sa_email
