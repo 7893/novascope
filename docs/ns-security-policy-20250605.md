@@ -19,7 +19,7 @@ Path: novascope/docs/ns-security-policy-20250605.md
 本节详细说明在Google Cloud Platform (GCP) 和 Cloudflare 中所使用的服务账号（或等效身份）的创建、权限配置和管理规范。
 
 * **GCP 服务账号**:
-    * **使用原则**: 对于GCP Cloud Functions（如 `ns-func-fetch-nasa-data`, `ns-api-nasa-data`）和Cloud Scheduler等需要访问其他GCP服务的组件，应使用专用的、具有最小权限的GCP服务账号。**推荐使用项目中已有的、通过Terraform变量（例如 `var.gcp_functions_service_account_email`）引用的预配置服务账号，本文档中不直接列出具体服务账号的ID或邮箱地址。**
+    * **使用原则**: NovaScope 项目统一使用项目的 Compute Engine 默认服务账号 `817261716888-compute@developer.gserviceaccount.com` 运行 Cloud Functions 与 Cloud Scheduler。该账号已具备访问 Secret Manager、Firestore 以及 Pub/Sub 的必要权限，因此无需在 Terraform 中再创建单独的服务账号。
     * **最小权限分配**:
         * Cloud Functions专用服务账号**仅应被授予**其执行任务所必需的角色。例如：
             * 访问GCP Secret Manager中特定密钥版本的权限 (`roles/secretmanager.secretAccessor`)。
@@ -27,7 +27,7 @@ Path: novascope/docs/ns-security-policy-20250605.md
             * 向GCP Pub/Sub特定主题发布或订阅消息的权限（例如，`ns-func-fetch-nasa-data` 需要 `roles/pubsub.subscriber` 来订阅 `ns-ps-daily-nasa-fetch` 主题）。
             * 写入GCP Cloud Logging的权限（通常默认拥有）。
         * Cloud Scheduler服务账号（或其使用的身份）仅需拥有向目标Pub/Sub主题 (`ns-ps-daily-nasa-fetch`) 发布消息的权限 (`roles/pubsub.publisher`)，不应授予任何对Firestore、Secret Manager或R2的多余权限。
-    * **Terraform中引用**: 在Terraform配置中，应通过变量或数据源（data source）来引用服务账号的邮箱地址，而不是硬编码。IAM绑定（`google_project_iam_member` 或 `google_cloudfunctions2_function_iam_member` 等资源）应精确地将所需角色授予此服务账号。
+    * **Terraform中引用**: 在 Terraform 配置中通过变量 `deployer_sa_email` 引用该默认服务账号的邮箱地址，避免硬编码。IAM 绑定（如 `google_project_iam_member` 或 `google_cloudfunctions2_function_iam_member`）应仅授予执行所需的最小角色。
     * **禁止事项**: **严禁创建或使用拥有Owner或Editor等过于宽泛权限的通用服务账号**来运行Cloud Functions或其他自动化任务。
 
 * **Cloudflare (针对API Token)**:

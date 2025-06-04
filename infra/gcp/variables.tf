@@ -1,5 +1,5 @@
 
-variable "project_id" {
+variable "gcp_project_id" {
   description = "GCP project ID"
   type        = string
 }
@@ -16,9 +16,4 @@ variable "deployer_sa_email" {
   default     = "817261716888-compute@developer.gserviceaccount.com"
 }
 
-variable "functions_sa_name" {
-  description = "Service account name for Cloud Functions"
-  type        = string
-  default     = "sa-ns-functions"
-}
 

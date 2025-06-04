@@ -14,13 +14,14 @@ NovaScope 是一个围绕美国国家航空航天局 (NASA) 提供的众多公�
   * 提供统一的、服务端渲染(SSR)的前端展示界面 (Cloudflare Workers)。
   * 追求架构简洁、成本最优、功能完备、单人可维护。
 
-**详细的架构设计、命名规范、可观测性方案和资源清单请参考 `docs/` 目录下的相关文档。**
+**项目的详细架构设计、命名规范、可观测性方案、安全策略与资源清单请参考 `docs/` 目录下的文档。**
 
-  * [项目架构设计 (`docs/ns-architecture-design-20250605.md`)](https://www.google.com/search?q=docs/ns-architecture-design-20250605.md)
-  * [项目命名规范 (`docs/ns-naming-conventions-20250605.md`)](https://www.google.com/search?q=docs/ns-naming-conventions-20250605.md)
-  * [可观测性实施规范 (`docs/ns-observability-spec-20250605.md`)](https://www.google.com/search?q=docs/ns-observability-spec-20250605.md)
-  * [项目资源清单与IaC边界 (`docs/ns-resource-inventory-20250605.md`)](https://www.google.com/search?q=docs/ns-resource-inventory-20250605.md)
-  * [项目开发与学习清单 (`docs/ns-project-checklist-20250605.md`)](https://www.google.com/search?q=docs/ns-project-checklist-20250605.md)
+  * [项目架构设计 (`docs/ns-architecture-design-20250604.md`)](docs/ns-architecture-design-20250604.md)
+  * [项目命名规范 (`docs/ns-naming-conventions-20250605.md`)](docs/ns-naming-conventions-20250605.md)
+  * [可观测性实施规范 (`docs/ns-observability-spec-20250603.md`)](docs/ns-observability-spec-20250603.md)
+  * [项目资源清单与 IaC 边界 (`docs/ns-resource-inventory-20250605.md`)](docs/ns-resource-inventory-20250605.md)
+  * [项目开发与学习清单 (`docs/ns-project-checklist-20250605.md`)](docs/ns-project-checklist-20250605.md)
+  * [安全与权限策略 (`docs/ns-security-policy-20250605.md`)](docs/ns-security-policy-20250605.md)
 
 ## 2\. 技术栈
 
@@ -67,7 +68,7 @@ NovaScope 是一个围绕美国国家航空航天局 (NASA) 提供的众多公�
       * **`tests/`**: 存放各类测试代码。
       * **`.github/workflows/`**: 存放CI/CD工作流配置文件。
 
-详细的命名规范请参考 `docs/ns-naming-conventions-20250605.md`。
+详细的命名规范请参考 [`docs/ns-naming-conventions-20250605.md`](docs/ns-naming-conventions-20250605.md)。
 
 ## 4\. 本地开发环境设置
 
@@ -125,7 +126,7 @@ NovaScope 是一个围绕美国国家航空航天局 (NASA) 提供的众多公�
       * Worker的日志将输出到 `wrangler dev` 的控制台。
       * 可以使用浏览器或Postman等工具访问本地运行的Worker进行调试。
 
-详细的日志、监控和告警策略请参考 `docs/ns-observability-spec-20250605.md`。
+详细的日志、监控和告警策略请参考 [`docs/ns-observability-spec-20250603.md`](docs/ns-observability-spec-20250603.md)。
 
 ## 6\. 构建与部署
 
@@ -144,6 +145,7 @@ NovaScope 是一个围绕美国国家航空航天局 (NASA) 提供的众多公�
 项目的基础设施（GCP和Cloudflare的核心资源）将通过 **Terraform** 进行统一管理和部署。
 
   * 进入 `infra/` 目录或其子目录（如 `infra/gcp/`, `infra/cloudflare/`）。
+  * 在 `infra/gcp/terraform.tfvars` 中配置 `gcp_project_id` 等项目变量。
   * 执行 `terraform init` 初始化。
   * 执行 `terraform plan` 预览变更。
   * 执行 `terraform apply` 应用变更。

@@ -14,7 +14,7 @@ resource "google_cloudfunctions2_function" "fetch_nasa_data" {
   }
 
   service_config {
-    service_account_email = google_service_account.functions.email
+    service_account_email = var.deployer_sa_email
   }
 
   event_trigger {

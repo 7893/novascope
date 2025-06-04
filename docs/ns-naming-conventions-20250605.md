@@ -77,7 +77,7 @@ _**文档说明**：本规范旨在为 NovaScope 项目在 Google Cloud Platform
 | Secret Manager 密钥ID | `ns-sm-r2-access-key-id` | 显式声明 (Terraform) | 存储 R2 访问密钥 ID |
 | Secret Manager 密钥ID | `ns-sm-r2-secret-access-key` | 显式声明 (Terraform) | 存储 R2 访问密钥 Secret |
 | Secret Manager 密钥ID | `ns-sm-shared-auth-token` | 显式声明 (Terraform) | Worker 与后端函数共享的鉴权密钥 |
-| 服务账号 | (例如) `sa-ns-functions` (逻辑名) | 显式声明 (Terraform) | 实际邮箱地址包含项目ID，Terraform中以逻辑名引用。 |
+| 服务账号 | `817261716888-compute@developer.gserviceaccount.com` | 使用 GCP 默认 | 项目统一使用的 Compute Engine 默认服务账号 |
 
 ---
 
