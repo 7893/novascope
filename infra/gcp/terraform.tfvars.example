@@ -1,4 +1,4 @@
-project_id = "your-gcp-project-id"
+gcp_project_id = "your-gcp-project-id"
 region     = "us-central1"
 # Optional: override default deployer service account
 # deployer_sa_email = "817261716888-compute@developer.gserviceaccount.com"

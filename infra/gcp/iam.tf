@@ -4,13 +4,13 @@ resource "google_service_account" "functions" {
 }
 
 resource "google_project_iam_member" "functions_secret_access" {
-  project = var.project_id
+  project = var.gcp_project_id
   role    = "roles/secretmanager.secretAccessor"
   member  = "serviceAccount:${google_service_account.functions.email}"
 }
 
 resource "google_project_iam_member" "functions_firestore_access" {
-  project = var.project_id
+  project = var.gcp_project_id
   role    = "roles/datastore.user"
   member  = "serviceAccount:${google_service_account.functions.email}"
 }
