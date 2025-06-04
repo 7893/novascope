@@ -10,6 +10,8 @@ terraform {
 }
 
 provider "google" {
-  project                     = var.project_id
-  region                      = var.region
-  impersonate_service_account = var.deployer_sa_email
+  project = var.gcp_project_id
+  region  = var.region
+  # Authentication relies on the active gcloud credentials.
+  # Cloud Functions themselves still run as var.deployer_sa_email.
+}
