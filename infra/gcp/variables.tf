@@ -1,10 +1,9 @@
-
 variable "gcp_project_id" {
   description = "GCP project ID"
   type        = string
 }
 
-variable "region" {
+variable "gcp_region" {
   description = "GCP region for resources"
   type        = string
   default     = "us-central1"
@@ -15,5 +14,3 @@ variable "deployer_sa_email" {
   type        = string
   default     = "817261716888-compute@developer.gserviceaccount.com"
 }
-
-
