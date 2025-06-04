@@ -1,4 +1,5 @@
-resource "google_secret_manager_secret" "nasa_api_key" {
+
+
   secret_id = "ns-sm-nasa-api-key"
   replication {
     auto {}
@@ -24,4 +25,4 @@ resource "google_secret_manager_secret" "cf_worker_shared_secret" {
   replication {
     auto {}
   }
-}
+

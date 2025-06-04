@@ -1,3 +1,4 @@
+
 variable "project_id" {
   description = "GCP project ID"
   type        = string
@@ -20,3 +21,4 @@ variable "functions_sa_name" {
   type        = string
   default     = "sa-ns-functions"
 }
+
