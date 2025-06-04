@@ -14,7 +14,7 @@ resource "google_cloudfunctions2_function" "api_nasa_data" {
   }
 
   service_config {
-    service_account_email = google_service_account.functions.email
+    service_account_email = var.deployer_sa_email
     ingress_settings      = "ALLOW_ALL"
   }
 

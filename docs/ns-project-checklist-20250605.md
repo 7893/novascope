@@ -60,8 +60,7 @@ Path: novascope/docs/ns-project-checklist-20250605.md
     * [ ] 定义并创建 Secret Manager 密钥“壳体” (4个核心密钥：`ns-nasa-api-key`, `ns-r2-access-key-id`, `ns-r2-secret-access-key`, `ns-cf-worker-shared-secret`)。
     * [ ] 定义并创建 Pub/Sub 主题 (`ns-ps-daily-nasa-fetch`)。
     * [ ] 定义并创建 Cloud Scheduler 作业 (`ns-sched-daily-fetch`)，配置其触发 Pub/Sub。
-    * [ ] 定义并创建专用的服务账号 (例如 `sa-ns-functions`)。
-    * [ ] 定义并应用核心的IAM绑定 (例如，服务账号访问Secret Manager, Firestore的权限)。
+    * [ ] 使用项目的 Compute Engine 默认服务账号 `817261716888-compute@developer.gserviceaccount.com`。
     * [ ] 定义并应用Firestore安全规则 (`infra/gcp/firestore.rules`)。
     * [ ] 定义并应用Firestore初始索引 (`infra/gcp/firestore.indexes.json`) (可选，根据查询需求)。
 * [ ] **核心共享基础资源定义与部署 (Cloudflare)**:
@@ -102,7 +101,7 @@ Path: novascope/docs/ns-project-checklist-20250605.md
     * [ ] 配置正确的Python运行时、入口点。
     * [ ] 配置环境变量。
     * [ ] 配置Pub/Sub触发器 (`ns-ps-daily-nasa-fetch`)。
-    * [ ] 配置服务账号。
+    * [ ] 使用默认服务账号 (无需额外配置)。
     * [ ] 配置源代码打包和上传 (引用GCS对象)。
 * [ ] **端到端测试 `ns-func-fetch-nasa-data` (APOD模块)**：
     * [ ] 手动触发Cloud Scheduler (或直接向Pub/Sub发消息)。
@@ -132,7 +131,7 @@ Path: novascope/docs/ns-project-checklist-20250605.md
     * [ ] 定义 `google_cloudfunctions2_function` 资源 `ns-api-nasa-data`。
     * [ ] 配置正确的Python运行时、HTTP触发器、入口点。
     * [ ] 配置环境变量（包括共享密钥的Secret ID）。
-    * [ ] 配置服务账号。
+    * [ ] 使用默认服务账号 (无需额外配置)。
 * [ ] **集成测试**:
     * [ ] 模拟Cloudflare Worker调用此API并验证响应。
 
