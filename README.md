@@ -144,6 +144,7 @@ NovaScope 是一个围绕美国国家航空航天局 (NASA) 提供的众多公�
 项目的基础设施（GCP和Cloudflare的核心资源）将通过 **Terraform** 进行统一管理和部署。
 
   * 进入 `infra/` 目录或其子目录（如 `infra/gcp/`, `infra/cloudflare/`）。
+  * 在 `infra/gcp/terraform.tfvars` 中配置 `gcp_project_id` 等项目变量。
   * 执行 `terraform init` 初始化。
   * 执行 `terraform plan` 预览变更。
   * 执行 `terraform apply` 应用变更。

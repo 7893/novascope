@@ -10,6 +10,7 @@ terraform {
 }
 
 provider "google" {
-  project                     = var.project_id
+  project                     = var.gcp_project_id
   region                      = var.region
   impersonate_service_account = var.deployer_sa_email
+}
