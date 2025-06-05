@@ -1,16 +1,19 @@
+# ~/novascope/apps/frontend/wrangler.toml
 name = "ns"
-compatibility_date = "2024-06-01"
-main = "src/index.ts"
+main = "src/index.ts" # 指向 TypeScript 源文件
+compatibility_date = "2024-06-01" # 请使用一个较新的日期
 
-[build]
-command = "npm run build"
-
-[triggers]
-crons = []
+# [build]
+# command = "npm run build" # 如果您在 package.json 中定义了复杂的构建脚本
+# watch_dir = "src"
 
 [vars]
-NS_GCP_API_URL = ""
-NS_GCP_SHARED_SECRET = ""
+# NS_GCP_API_URL = "..." # 用于 wrangler dev 本地开发时模拟，实际值通过 Dashboard/Terraform Secret 设置
+# NS_GCP_SHARED_SECRET = "..."
+NS_R2_BUCKET_NAME = "ns-nasa"
 
-[env.dev]
-# 仅开发环境可选配置
+# R2 绑定，用于 wrangler dev 本地开发时模拟
+[[r2_buckets]]
+binding = "NASA_MEDIA_BUCKET"
+bucket_name = "ns-nasa"
+# preview_bucket_name = "your-preview-r2-bucket-for-ns-nasa" # 本地开发时可能需要一个预览桶

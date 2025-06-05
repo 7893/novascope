@@ -5,7 +5,7 @@ resource "cloudflare_workers_script" "frontend_worker" {
   # 确保这个路径指向您实际的 Worker 脚本文件
   # 我们之前创建了一个占位符: ../../apps/frontend/src/index.js
   # 当您有了编译后的 TypeScript Worker 代码 (例如 dist/worker.js) 时，应更新此路径
-  content    = file("../../apps/frontend/src/index.js") 
+  content    = file("../../apps/frontend/dist/index.js") 
   module     = true # 因为 Worker 代码（即使是占位符）使用了 ES module 语法
 
   # R2 存储桶绑定
