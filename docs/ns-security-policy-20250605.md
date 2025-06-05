@@ -33,6 +33,7 @@ Path: novascope/docs/ns-security-policy-20250605.md
 * **Cloudflare (针对API Token)**:
     * 当通过Terraform或Wrangler CLI管理Cloudflare资源时，所使用的API Token应遵循最小权限原则。例如，如果一个Token仅用于管理R2和Worker，则不应授予其管理DNS或账户设置的权限。
     * API Token的实际值应作为敏感信息处理，不应硬编码在Terraform配置中，而是通过环境变量或安全的变量传递机制提供给Terraform执行环境。
+    * 推荐在执行 `terraform` 命令时通过环境变量 `CLOUDFLARE_API_TOKEN`，或在本地的 `terraform.tfvars`/`.auto.tfvars` 文件中提供该值，并确保此类文件已添加到 `.gitignore`。
 
 ## 2. Secret 管理策略
 所有项目所需的密钥、API Key、访问令牌、共享密码等敏感凭证，都必须通过专门的密钥管理服务进行安全存储和访问控制。

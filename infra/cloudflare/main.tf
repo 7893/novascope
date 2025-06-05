@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token  = "fMSkG5FVM8mf5OiwWS3y_-xnNFoaAzKRLRdwRKy9"
+  # api_token should be provided via environment variable or tfvars file
 }
 
 variable "cloudflare_account_id" {
